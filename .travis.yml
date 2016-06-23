@@ -4,7 +4,6 @@ node_js:
 before_script:
   - "npm i -g typescript"
   - "cd ./src/ && typings install && cd ../"
-  - "typings install"
 script:
   - "cd ./src/ && tsc && cd ../"
   - "npm run travis"
