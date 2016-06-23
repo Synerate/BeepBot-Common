@@ -73,9 +73,7 @@ describe("Utils", function () {
   it("collects string parts", function () {
     let parts = "I am testing the collecting of parts".split(" ");
 
-    (function () {
-      Utils.collectParts(parts, "......");
-    }).should.throw("Invalid task format");
+    should.Throw(() => Utils.collectParts(parts, "......"), "Invalid task format");
 
     Utils.collectParts(parts, "0..").should.eql(parts);
     Utils.collectParts(parts, "1").should.eql([parts[1]]);
