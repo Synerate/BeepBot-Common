@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - "5.11"
 before_script:
-  - "npm i -g typescript"
+  - "npm i -g typescript typings"
   - "cd ./src/ && typings install && cd ../"
 script:
   - "cd ./src/ && tsc && cd ../"
