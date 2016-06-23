@@ -1,0 +1,14 @@
+# Coverage
+coverage/
+
+# NodeJS
+node_modules/
+
+# TypeScript
+src/typings/
+
+# Built Code
+js/
+
+# Editor
+.idea

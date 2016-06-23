@@ -1,0 +1,36 @@
+{
+  "name": "beepbot-common",
+  "version": "1.0.0",
+  "description": "Common libs for the BeepBot project.",
+  "main": "js/index.js",
+  "typings": "js/index",
+  "author": "ExoZone Development",
+  "license": "MIT",
+  "dependencies": {
+    "beepbot-lang": "^1.0.2",
+    "lodash": "^4.13.1"
+  },
+  "scripts": {
+    "test": "mocha tests/index.js",
+    "travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests/*"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.3",
+    "mocha": "^2.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ExoZoneDev/BeepBot-Common.git"
+  },
+  "keywords": [
+    "beepbot",
+    "common",
+    "utils"
+  ],
+  "bugs": {
+    "url": "https://github.com/ExoZoneDev/BeepBot-Common/issues"
+  },
+  "homepage": "https://github.com/ExoZoneDev/BeepBot-Common#readme"
+}
