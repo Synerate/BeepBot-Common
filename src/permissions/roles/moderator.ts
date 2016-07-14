@@ -12,8 +12,13 @@ export const Moderator = new Role({
     "channel:quote:create",
     "channel:quote:delete",
     "channel:cooldown:bypass",
+    "channel:regulars:manage",
+    "channel:ticker:manage",
+    "channel:variables:manage",
     "game:start",
     "game:end",
-    "protection:manage"
+    "protection:manage",
+    "command:run:moderator",
+    "platform:send:custom"
   ]
 });

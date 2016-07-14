@@ -6,7 +6,6 @@ export const Developer = new Role({
   type: "internal",
   inherits: [ Owner ],
   permissions: [
-    "bot:developer:commands",
-    "bot:developer:events"
+    "*"
   ]
 });

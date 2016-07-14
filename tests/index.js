@@ -28,6 +28,7 @@ describe("Permissions", function() {
 
   it("registers roles", function () {
     permissions.should.have.property("roles").that.has.property("User");
+    permissions.should.have.property("roles").that.has.property("Subscriber");
     permissions.should.have.property("roles").that.has.property("Regular");
     permissions.should.have.property("roles").that.has.property("Moderator");
     permissions.should.have.property("roles").that.has.property("Owner");
@@ -38,7 +39,7 @@ describe("Permissions", function() {
     permissions.registerRole(LoveRaider);
     permissions.should.have.property("roles").that.has.property("Love Raider");
 
-    let Raider = permissions.get("Love Raider");
+    const Raider = permissions.get("Love Raider");
     Raider.has("command:run:love_raider").should.be.true;
     Raider.type.should.eq("custom");
     Raider.has("user:voice").should.be.true;
@@ -51,27 +52,56 @@ describe("Permissions", function() {
   });
 
   it("checks role has permission", function() {
-    let Mod = permissions.get("Moderator");
+    const Mod = permissions.get("Moderator");
+    Mod.has("command:run:moderator").should.be.true;
     Mod.has("channel:command:edit").should.be.true;
     Mod.has("channel:command:cheese").should.be.false;
   });
 
   it("checks roles inherits", function () {
-    let Mod = permissions.get("Moderator");
+    const Mod = permissions.get("Moderator");
     Mod.inherits("Moderator").should.be.true;
     Mod.inherits("User").should.be.true;
     Mod.inherits("Cheese").should.be.false;
+  });
+
+  it("checks if permissions are being inherited", function() {
+    const Owner = permissions.get("Owner");
+    Owner.has("channel:command:forcedelete").should.be.true;
+    Owner.has("channel:command:create").should.be.true;
+    Owner.has("command:run:moderator").should.be.true;
+    Owner.has("user:voice").should.be.true;
+    Owner.has("bot:developer:commands").should.be.false;
+  });
+
+  it("checks if role has wildcard permissions", function () {
+    const Developer = permissions.get("Developer");
+    Developer.has("*").should.be.true;
+  });
+
+  it("gets the registered user roles", function () {
+    const roles = permissions.getRoles();
+    should.exist(roles);
+    Object.keys(roles).length.should.eq(7);
+    should.exist(roles["Moderator"]);
   });
 
   it("gets permission definition", function () {
     Permissions.describe("user:voice").should.eq("Allow the bot to process the users messages.");
     should.not.exist(Permissions.describe("cheese:test"));
   });
+
+  it("all permissions should have a definition", function() {
+    const Developer = permissions.get("Developer");
+    Developer.permissions.forEach((permission) => {
+      should.exist(Permissions.describe(permission));
+    });
+  });
 });
 
 describe("Utils", function () {
   it("collects string parts", function () {
-    let parts = "I am testing the collecting of parts".split(" ");
+    const parts = "I am testing the collecting of parts".split(" ");
 
     should.Throw(() => Utils.collectParts(parts, "......"), "Invalid task format");
 

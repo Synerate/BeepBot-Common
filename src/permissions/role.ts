@@ -32,7 +32,8 @@ export class Role {
    * Check to see if the role has a given permission.
    */
   has(permission: string): boolean {
-    return this.permissions.indexOf(permission) !== -1;
+    // TODO: Handle wild cards better.
+    return this.permissions.indexOf("*") != -1 ? true : this.permissions.indexOf(permission) !== -1;
   }
 
   /**

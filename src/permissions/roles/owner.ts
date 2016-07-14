@@ -6,6 +6,9 @@ export const Owner = new Role({
   type: "internal",
   inherits: [ Moderator ],
   permissions: [
-    "channel:command:forcedelete"
+    "channel:command:forcedelete",
+    "channel:command:restore",
+    "command:run:owner",
+    "bot:command:status"
   ]
 });

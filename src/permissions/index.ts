@@ -3,7 +3,7 @@ import { Roles } from "./roles";
 import { Descriptions } from "./descriptions";
 
 export class Permissions {
-  roles: UserRoles = {};
+  private roles: UserRoles = {};
 
   constructor() {
     Roles.forEach(role => this.registerRole(role));
@@ -12,21 +12,28 @@ export class Permissions {
   /**
    * Register a user role.
    */
-  registerRole(role: Role): void {
+  public registerRole(role: Role): void {
     this.roles[role.name] = role;
   }
 
   /**
    * Get a user role.
    */
-  get(role: string): Role {
+  public get(role: string): Role {
     return this.roles[role];
+  }
+
+  /**
+   * Get all the user roles registered.
+   */
+  public getRoles(): UserRoles {
+    return this.roles;
   }
 
   /**
    * Get the description for the permission from it's name.
    */
-  static describe(permission: string): string {
+  public static describe(permission: string): string {
     return Descriptions[permission] ? Descriptions[permission].text : null;
   }
 }

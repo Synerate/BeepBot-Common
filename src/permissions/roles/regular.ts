@@ -6,6 +6,7 @@ export const Regular = new Role({
   type: "internal",
   inherits: [ User ],
   permissions: [
-    "protection:bypass"
+    "protection:bypass",
+    "command:run:regular"
   ]
 });
