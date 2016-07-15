@@ -6,6 +6,10 @@ export class Role {
    */
   name: string;
   /**
+   * The slug name of the role.
+   */
+  slug: string;
+  /**
    * The type of the role.
    */
   type: RoleType;
@@ -20,20 +24,28 @@ export class Role {
 
   constructor({ name, type, permissions, inherits }: UserRole) {
     this.name = name;
+    this.slug = _.kebabCase(name);
     this.type = type;
     this.permissions = permissions;
     this._inherits = inherits || [];
-    this._inherits.forEach(inherit => {
-      this.permissions = _.union(this.permissions, inherit.permissions)
-    });
+    this._inherits.forEach(inherit => this.permissions = _.union(this.permissions, inherit.permissions));
   }
 
   /**
    * Check to see if the role has a given permission.
    */
   has(permission: string): boolean {
-    // TODO: Handle wild cards better.
-    return this.permissions.indexOf("*") != -1 ? true : this.permissions.indexOf(permission) !== -1;
+    const permissions = this.permissions;
+    if (permissions.indexOf(permission) > -1) {
+      return true;
+    }
+    for (let i = 0, length = permissions.length; i < length; i++) {
+      const perm = permissions[i].split(":");
+      if (perm.indexOf("*") > -1) {
+        return new RegExp(`(${_.dropRight(perm, 1).join(":")}.*)`, "i").test(permission);
+      }
+    }
+    return false;
   }
 
   /**

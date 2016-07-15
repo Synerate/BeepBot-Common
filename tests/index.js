@@ -46,6 +46,18 @@ describe("Permissions", function() {
     Raider.has("channel:quote:delete").should.be.false;
   });
 
+  it("does not allow a role to be registered again", function () {
+    should.Throw(() => permissions.registerRole(LoveRaider), "Role already registered");
+  });
+
+  it("has a slug name", function () {
+    const Moderator = permissions.get("Moderator");
+    Moderator.slug.should.eq("moderator");
+
+    const Raider = permissions.get("Love Raider");
+    Raider.slug.should.eq("love-raider");
+  });
+
   it("has role", function () {
     should.exist(permissions.get("Moderator"));
     should.not.exist(permissions.get("Cheese"));
@@ -53,9 +65,8 @@ describe("Permissions", function() {
 
   it("checks role has permission", function() {
     const Mod = permissions.get("Moderator");
-    Mod.has("command:run:moderator").should.be.true;
     Mod.has("channel:command:edit").should.be.true;
-    Mod.has("channel:command:cheese").should.be.false;
+    Mod.has("channel:command:forcedelete").should.be.false;
   });
 
   it("checks roles inherits", function () {
@@ -79,6 +90,14 @@ describe("Permissions", function() {
     Developer.has("*").should.be.true;
   });
 
+  it("checks if role has sub wildcard permission", function () {
+    const Moderator = permissions.get("Moderator");
+    Moderator.permissions.push("channel:settings:*");
+    Moderator.has("channel:settings:edit").should.be.true;
+    Moderator.permissions.pop();
+    Moderator.has("channel:settings:edit").should.be.false;
+  });
+
   it("gets the registered user roles", function () {
     const roles = permissions.getRoles();
     should.exist(roles);
@@ -89,13 +108,6 @@ describe("Permissions", function() {
   it("gets permission definition", function () {
     Permissions.describe("user:voice").should.eq("Allow the bot to process the users messages.");
     should.not.exist(Permissions.describe("cheese:test"));
-  });
-
-  it("all permissions should have a definition", function() {
-    const Developer = permissions.get("Developer");
-    Developer.permissions.forEach((permission) => {
-      should.exist(Permissions.describe(permission));
-    });
   });
 });
 

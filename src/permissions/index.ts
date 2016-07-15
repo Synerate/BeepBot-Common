@@ -13,6 +13,9 @@ export class Permissions {
    * Register a user role.
    */
   public registerRole(role: Role): void {
+    if (this.roles[role.name] != null) {
+      throw new Error("Role already registered");
+    }
     this.roles[role.name] = role;
   }
 
