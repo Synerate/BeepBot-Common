@@ -1,10 +1,10 @@
 import { Role } from "../role";
-import { Regular } from "./regular";
+import { Subscriber } from "./subscriber";
 
 export const Moderator = new Role({
   name: "Moderator",
   type: "internal",
-  inherits: [ Regular ],
+  inherits: [ Subscriber ],
   permissions: [
     "channel:command:edit",
     "channel:command:delete",

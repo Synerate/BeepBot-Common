@@ -1,5 +1,5 @@
 import { Role } from "../role";
-import { User } from './user';
+import { User } from "./user";
 
 export const Subscriber = new Role({
   name: "Subscriber",
