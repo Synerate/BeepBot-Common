@@ -1,10 +1,10 @@
 import { Role } from "../role";
-import { User } from "./user";
+import { Regular } from "./regular";
 
 export const Subscriber = new Role({
   name: "Subscriber",
   type: "internal",
-  inherits: [ User ],
+  inherits: [ Regular ],
   permissions: [
     "command:run:subscriber"
   ]
