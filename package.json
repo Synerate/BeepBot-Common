@@ -1,6 +1,6 @@
 {
   "name": "beepbot-common",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Common libs for the BeepBot project.",
   "main": "js/index.js",
   "typings": "js/index",
@@ -10,19 +10,24 @@
     "beepbot-lang": "^1.0.2",
     "lodash": "^4.13.1"
   },
+  "devDependencies": {
+    "@types/chai": "^3.4.32",
+    "@types/lodash": "^4.14.34",
+    "@types/mocha": "^2.2.31",
+    "@types/node": "^6.0.38",
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "istanbul": "^0.4.3",
+    "mocha": "^3.0.2",
+    "typescript": "^2.0.0"
+  },
   "scripts": {
     "test": "mocha tests/index.js",
     "travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests/*"
   },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "coveralls": "^2.11.9",
-    "istanbul": "^0.4.3",
-    "mocha": "^2.5.3"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ExoZoneDev/BeepBot-Common.git"
+    "url": "git+https://github.com/ExoZoneDev/beepbot-common.git"
   },
   "keywords": [
     "beepbot",
@@ -30,7 +35,7 @@
     "utils"
   ],
   "bugs": {
-    "url": "https://github.com/ExoZoneDev/BeepBot-Common/issues"
+    "url": "https://github.com/ExoZoneDev/beepbot-common/issues"
   },
-  "homepage": "https://github.com/ExoZoneDev/BeepBot-Common#readme"
+  "homepage": "https://github.com/ExoZoneDev/beepbot-common#readme"
 }

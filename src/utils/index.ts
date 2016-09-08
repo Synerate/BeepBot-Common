@@ -32,6 +32,9 @@ function stripCommand(prefix: string, str: string): string {
   return str.replace(prefix, "");
 }
 
+/**
+ * Parse bytes to a human readable format.
+ */
 function bytesToSize(bytes: number): string {
   if (bytes == 0) {
     return '0 Byte';

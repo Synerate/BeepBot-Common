@@ -4,15 +4,15 @@ export class Role {
   /**
    * The name of the role.
    */
-  name: string;
+  public name: string;
   /**
    * The slug name of the role.
    */
-  slug: string;
+  public slug: string;
   /**
    * The type of the role.
    */
-  type: RoleType;
+  public type: RoleType;
   /**
    * The permissions which the role has access too.
    */
@@ -20,15 +20,20 @@ export class Role {
   /**
    * The roles which this role inherits.
    */
-  _inherits: Role[];
+  public _inherits: Role[];
+  /**
+   * The XP boost which the role gives to users.
+   */
+  private _pointBoost: number;
 
-  constructor({ name, type, permissions, inherits }: UserRole) {
+  constructor({ name, type, permissions, inherits, boost = 0 }: UserRole) {
     this.name = name;
     this.slug = _.kebabCase(name);
     this.type = type;
     this.permissions = permissions;
     this._inherits = inherits || [];
     this._inherits.forEach(inherit => this.permissions = _.union(this.permissions, inherit.permissions));
+    this._pointBoost = boost;
   }
 
   /**
@@ -62,6 +67,13 @@ export class Role {
     }
     return false;
   }
+
+  /**
+   * Get the XP boost for the user role.
+   */
+  getBoost(): number {
+    return this._pointBoost;
+  }
 }
 
 export type RoleType = "internal" | "custom";
@@ -71,4 +83,5 @@ export interface UserRole {
   type: RoleType;
   permissions: string[];
   inherits?: Role[];
+  boost?: number;
 }

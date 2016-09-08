@@ -22,7 +22,8 @@ describe("Permissions", function() {
       inherits: [ User ],
       permissions: [
         "command:run:love_raider"
-      ]
+      ],
+      boost: 0.50
     });
   });
 
@@ -109,6 +110,14 @@ describe("Permissions", function() {
     Permissions.describe("user:voice").should.eq("Allow the bot to process the users messages.");
     should.not.exist(Permissions.describe("cheese:test"));
   });
+
+  it("has a xp boost", function () {
+    const Moderator = permissions.get("Moderator");
+    Moderator.getBoost().should.eq(0);
+    Moderator.getBoost().should.not.eq(10);
+
+    LoveRaider.getBoost().should.eq(0.50);
+  })
 });
 
 describe("Utils", function () {
@@ -136,8 +145,8 @@ describe("Utils", function () {
   });
 
   it("converts bytes to be human readable", function () {
-    Utils.bytesToSize("").should.eq("0 Byte");
-    Utils.bytesToSize("").should.be.NaN;
+    Utils.bytesToSize(0).should.eq("0 Byte");
+    Utils.bytesToSize("kjbob").should.be.NaN;
 
     Utils.bytesToSize(0).should.eq("0 Byte");
     Utils.bytesToSize(10000).should.eq("9.77 KB");

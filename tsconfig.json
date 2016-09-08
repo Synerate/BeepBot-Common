@@ -2,13 +2,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "inlineSourceMap": true,
     "noImplicitAny": true,
-    "outDir": "../js",
-    "declaration": true
+    "declaration": true,
+    "outDir": "js"
   },
   "exclude": [
-    "node_modules"
+    "node_modules/"
   ]
 }
