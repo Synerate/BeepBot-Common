@@ -18,21 +18,15 @@ export class Role {
    */
   public permissions: string[];
   /**
-   * The roles which this role inherits.
-   */
-  public _inherits: Role[];
-  /**
    * The XP boost which the role gives to users.
    */
   private _pointBoost: number;
 
-  constructor({ name, type, permissions, inherits, boost = 0 }: UserRole) {
+  constructor({ name, type, permissions, boost = 0 }: UserRole) {
     this.name = name;
     this.slug = _.kebabCase(name);
     this.type = type;
     this.permissions = permissions;
-    this._inherits = inherits || [];
-    this._inherits.forEach(inherit => this.permissions = _.union(this.permissions, inherit.permissions));
     this._pointBoost = boost;
   }
 
@@ -54,21 +48,6 @@ export class Role {
   }
 
   /**
-   * Check to see if the role inherits another role.
-   */
-  inherits(name: string): boolean {
-    if (this.name === name) {
-      return true;
-    }
-    for (let i = 0, length = this._inherits.length; i < length; i++) {
-      if (this._inherits[i].inherits(name)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
    * Get the XP boost for the user role.
    */
   getBoost(): number {
@@ -82,6 +61,5 @@ export interface UserRole {
   name: string;
   type: RoleType;
   permissions: string[];
-  inherits?: Role[];
   boost?: number;
 }
