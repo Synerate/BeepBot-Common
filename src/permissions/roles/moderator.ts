@@ -1,22 +1,37 @@
 import { Role } from "../role";
+import { Subscriber } from "./subscriber";
 
 export const Moderator = new Role({
   name: "Moderator",
   type: "internal",
+  inherits: [ Subscriber ],
   permissions: [
-    "channel:command:edit",
-    "channel:command:delete",
-    "channel:command:create",
+    "channel:alias:manage",
+    "channel:cooldown:bypass",
+    "channel:custom:create",
+    "channel:custom:delete",
+    "channel:custom:edit",
+    "channel:gif:create",
+    "channel:gif:delete",
     "channel:quote:create",
     "channel:quote:delete",
-    "channel:cooldown:bypass",
-    "channel:regulars:manage",
+    "channel:regular:manage",
     "channel:ticker:manage",
+    "channel:variable:manage",
     "channel:variables:manage",
-    "game:start",
-    "game:end",
+    "command:chuck:run",
+    "command:hquote:run",
+    "command:joke:run",
+    "command:points:manage",
+    "command:raided:run",
+    "command:restore:run",
+    "command:synced:run",
+    "games:start",
+    "games:stop",
+    "message:tagging",
+    "platform:send:custom",
     "protection:manage",
-    "command:run:moderator",
-    "platform:send:custom"
+    "protection:permit",
+    "role:fallback"
   ]
 });

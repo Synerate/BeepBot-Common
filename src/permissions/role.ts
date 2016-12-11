@@ -22,11 +22,13 @@ export class Role {
    */
   private _pointBoost: number;
 
-  constructor({ name, type, permissions, boost = 0 }: UserRole) {
+  constructor({ name, type, permissions, inherits = [], boost = 0 }: UserRole) {
     this.name = name;
     this.slug = _.kebabCase(name);
     this.type = type;
     this.permissions = permissions;
+    // Apply all the permissions from the sub roles to this role.
+    inherits.forEach(inherit => this.permissions = _.union(this.permissions, inherit.permissions));
     this._pointBoost = boost;
   }
 
@@ -61,5 +63,6 @@ export interface UserRole {
   name: string;
   type: RoleType;
   permissions: string[];
+  inherits?: Role[];
   boost?: number;
 }

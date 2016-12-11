@@ -19,6 +19,7 @@ describe("Permissions", function() {
     LoveRaider = new Role({
       name: "Love Raider",
       type: "custom",
+      inherits: [ User ],
       permissions: [
         "command:run:love_raider"
       ],
@@ -42,6 +43,7 @@ describe("Permissions", function() {
     const Raider = permissions.get("Love Raider");
     Raider.has("command:run:love_raider").should.be.true;
     Raider.type.should.eq("custom");
+    Raider.has("user:voice").should.be.true;
     Raider.has("channel:quote:delete").should.be.false;
   });
 
@@ -64,8 +66,16 @@ describe("Permissions", function() {
 
   it("checks role has permission", function() {
     const Mod = permissions.get("Moderator");
-    Mod.has("channel:command:edit").should.be.true;
-    Mod.has("channel:command:forcedelete").should.be.false;
+    Mod.has("channel:custom:edit").should.be.true;
+    Mod.has("channel:custom:forcedelete").should.be.false;
+  });
+
+  it("checks if permissions are being inherited", function() {
+    const Owner = permissions.get("Owner");
+    Owner.has("channel:command:forcedelete").should.be.true;
+    Owner.has("channel:custom:create").should.be.true;
+    Owner.has("user:voice").should.be.true;
+    Owner.has("bot:developer:commands").should.be.false;
   });
 
   it("checks if role has wildcard permissions", function () {
