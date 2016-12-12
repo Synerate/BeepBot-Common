@@ -55,6 +55,46 @@ export class Role {
   getBoost(): number {
     return this._pointBoost;
   }
+
+  /**
+   * Sets the XP boost for the user role.
+   */
+  setBoost(boost: number): number {
+    this._pointBoost = boost;
+    return this._pointBoost;
+  }
+
+  /**
+   * Overrides the current permissions with new ones.
+   */
+  set(permissions: string[]): Role {
+    this.permissions = permissions;
+    return this;
+  }
+
+  /**
+   * Adds a permission to a role.
+   */
+  add(permission: string): boolean {
+    if (this.permissions.indexOf(permission) === -1) {
+      this.permissions.push(permission);
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Removes a permission from a role.
+   */
+  remove(permission: string): boolean {
+    for (let i = 0, length = this.permissions.length; i < length; i++) {
+      if (this.permissions[i] === permission) {
+        this.permissions.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
 export type RoleType = "internal" | "custom";

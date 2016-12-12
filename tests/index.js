@@ -70,6 +70,27 @@ describe("Permissions", function() {
     Mod.has("channel:custom:forcedelete").should.be.false;
   });
 
+  it("adds a new permission", function () {
+    const Mod = permissions.get("Moderator");
+    Mod.add("testing:cheese").should.be.true;
+    Mod.add("testing:cheese").should.be.false;
+    Mod.has("testing:cheese").should.be.true;
+  });
+
+  it("removes a permission", function () {
+    const Mod = permissions.get("Moderator");
+    Mod.remove("channel:custom:edit").should.be.true;
+    Mod.remove("channel:custom:edit").should.be.false;
+    Mod.has("channel:custom:edit").should.be.false;
+  });
+
+  it("overrides the current permissions", function () {
+    const Mod = permissions.get("Moderator");
+    Mod.set([ "channel:new:create", "channel:new:edit" ]);
+    Mod.remove("channel:custom:edit").should.be.false;
+    Mod.remove("channel:new:create").should.be.true;
+  });
+
   it("checks if permissions are being inherited", function() {
     const Owner = permissions.get("Owner");
     Owner.has("channel:command:forcedelete").should.be.true;
@@ -109,7 +130,14 @@ describe("Permissions", function() {
     Moderator.getBoost().should.not.eq(10);
 
     LoveRaider.getBoost().should.eq(0.50);
-  })
+  });
+
+  it("changes the xp boost", function () {
+    const Moderator = permissions.get("Moderator");
+    Moderator.getBoost().should.eq(0);
+    Moderator.setBoost(13);
+    Moderator.getBoost().should.eq(13);
+  });
 });
 
 describe("Utils", function () {
