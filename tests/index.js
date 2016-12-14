@@ -138,6 +138,15 @@ describe("Permissions", function() {
     Moderator.setBoost(13);
     Moderator.getBoost().should.eq(13);
   });
+
+  it("does allow to unregister a role", function () {
+    permissions.unRegisterRole(LoveRaider);
+    should.not.exist(permissions.get("Love Raider"));
+  });
+
+  it("does not allow to unregister a role which is not found.", function () {
+    should.Throw(() => permissions.unRegisterRole(LoveRaider), "Role not found");
+  });
 });
 
 describe("Utils", function () {

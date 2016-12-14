@@ -20,6 +20,16 @@ export class Permissions {
   }
 
   /**
+   * Unregisters a user role.
+   */
+  public unRegisterRole(role: Role): void {
+    if (this.roles[role.name] == null) {
+      throw new Error("Role not found");
+    }
+    delete this.roles[role.name];
+  }
+
+  /**
    * Get a user role.
    */
   public get(role: string): Role {

@@ -7,6 +7,7 @@ export const Owner = new Role({
   inherits: [ Moderator ],
   permissions: [
     "bot:manage",
+    "channel:custom:override",
     "channel:command:forcedelete",
     "channel:command:restore",
     "owner:override"
