@@ -6,9 +6,11 @@
     "inlineSourceMap": true,
     "noImplicitAny": true,
     "declaration": true,
+    "sourceRoot": "src",
     "outDir": "js"
   },
   "exclude": [
+    "js/",
     "node_modules/"
   ]
 }

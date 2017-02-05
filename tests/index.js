@@ -9,6 +9,8 @@ const Locale = require("../js/").Locale;
 
 const should = chai.should();
 
+const LoveRaiderId = "9d77f237-b412-478b-b5ed-d46611a5e074";
+
 describe("Permissions", function() {
   let LoveRaider;
   let permissions;
@@ -17,6 +19,7 @@ describe("Permissions", function() {
     permissions = new Permissions();
 
     LoveRaider = new Role({
+      id: LoveRaiderId,
       name: "Love Raider",
       type: "custom",
       inherits: [ User ],
@@ -45,6 +48,13 @@ describe("Permissions", function() {
     Raider.type.should.eq("custom");
     Raider.has("user:voice").should.be.true;
     Raider.has("channel:quote:delete").should.be.false;
+    Raider.getId().should.be.eq(LoveRaiderId);
+  });
+
+  it("get a role from an Id", function () {
+    permissions.getById(LoveRaiderId).should.eq(LoveRaider);
+    permissions.getById(LoveRaiderId).should.not.eq(permissions.get("Moderator"));
+    should.not.exist(permissions.getById("001"));
   });
 
   it("does not allow a role to be registered again", function () {
@@ -53,10 +63,10 @@ describe("Permissions", function() {
 
   it("has a slug name", function () {
     const Moderator = permissions.get("Moderator");
-    Moderator.slug.should.eq("moderator");
+    Moderator.getSlug().should.eq("moderator");
 
     const Raider = permissions.get("Love Raider");
-    Raider.slug.should.eq("love-raider");
+    Raider.getSlug().should.eq("love-raider");
   });
 
   it("has role", function () {
@@ -64,31 +74,36 @@ describe("Permissions", function() {
     should.not.exist(permissions.get("Cheese"));
   });
 
+  it("has permissions", function () {
+    const Moderator = permissions.get("Moderator");
+    Moderator.getPerms().should.be.an("array");
+  });
+
   it("checks role has permission", function() {
-    const Mod = permissions.get("Moderator");
-    Mod.has("channel:custom:edit").should.be.true;
-    Mod.has("channel:custom:forcedelete").should.be.false;
+    const Moderator = permissions.get("Moderator");
+    Moderator.has("channel:custom:edit").should.be.true;
+    Moderator.has("channel:custom:forcedelete").should.be.false;
   });
 
   it("adds a new permission", function () {
-    const Mod = permissions.get("Moderator");
-    Mod.add("testing:cheese").should.be.true;
-    Mod.add("testing:cheese").should.be.false;
-    Mod.has("testing:cheese").should.be.true;
+    const Moderator = permissions.get("Moderator");
+    Moderator.add("testing:cheese").should.be.true;
+    Moderator.add("testing:cheese").should.be.false;
+    Moderator.has("testing:cheese").should.be.true;
   });
 
   it("removes a permission", function () {
-    const Mod = permissions.get("Moderator");
-    Mod.remove("channel:custom:edit").should.be.true;
-    Mod.remove("channel:custom:edit").should.be.false;
-    Mod.has("channel:custom:edit").should.be.false;
+    const Moderator = permissions.get("Moderator");
+    Moderator.remove("channel:custom:edit").should.be.true;
+    Moderator.remove("channel:custom:edit").should.be.false;
+    Moderator.has("channel:custom:edit").should.be.false;
   });
 
   it("overrides the current permissions", function () {
-    const Mod = permissions.get("Moderator");
-    Mod.set([ "channel:new:create", "channel:new:edit" ]);
-    Mod.remove("channel:custom:edit").should.be.false;
-    Mod.remove("channel:new:create").should.be.true;
+    const Moderator = permissions.get("Moderator");
+    Moderator.set([ "channel:new:create", "channel:new:edit" ]);
+    Moderator.remove("channel:custom:edit").should.be.false;
+    Moderator.remove("channel:new:create").should.be.true;
   });
 
   it("checks if permissions are being inherited", function() {
@@ -106,9 +121,9 @@ describe("Permissions", function() {
 
   it("checks if role has sub wildcard permission", function () {
     const Moderator = permissions.get("Moderator");
-    Moderator.permissions.push("channel:settings:*");
+    Moderator.add("channel:settings:*");
     Moderator.has("channel:settings:edit").should.be.true;
-    Moderator.permissions.pop();
+    Moderator.remove("channel:settings:*");
     Moderator.has("channel:settings:edit").should.be.false;
   });
 

@@ -1,9 +1,10 @@
-import { Role } from "../role";
-import { Regular } from "./regular";
+import { Role } from '../role';
+import { Regular } from './regular';
 
 export const Subscriber = new Role({
-  name: "Subscriber",
-  type: "internal",
+  id: "3",
+  name: 'Subscriber',
+  type: 'internal',
   inherits: [ Regular ],
   permissions: []
 });

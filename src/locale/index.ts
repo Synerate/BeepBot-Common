@@ -1,5 +1,5 @@
-import * as util from "util";
-import { langFiles } from "beepbot-lang";
+import * as util from 'util';
+import { langFiles } from 'beepbot-lang';
 
 /**
  * Get the translation for the key given and the locale.
@@ -7,7 +7,7 @@ import { langFiles } from "beepbot-lang";
  */
 function getTranslation(locale: string, key: string): string {
   if (langFiles[locale] == null || langFiles[locale][key] == null) {
-    return langFiles["en_US"][key];
+    return langFiles['en_US'][key];
   }
   return langFiles[locale][key];
 }

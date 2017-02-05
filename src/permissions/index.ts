@@ -1,6 +1,6 @@
-import { Role } from "./role";
-import { Roles } from "./roles";
-import { Descriptions } from "./descriptions";
+import { Role } from './role';
+import { Roles } from './roles';
+import { Descriptions } from './descriptions';
 
 export class Permissions {
   private roles: UserRoles = {};
@@ -13,20 +13,20 @@ export class Permissions {
    * Register a user role.
    */
   public registerRole(role: Role): void {
-    if (this.roles[role.name] != null) {
-      throw new Error("Role already registered");
+    if (this.roles[role.getName()] != null) {
+      throw new Error('Role already registered');
     }
-    this.roles[role.name] = role;
+    this.roles[role.getName()] = role;
   }
 
   /**
    * Unregisters a user role.
    */
   public unRegisterRole(role: Role): void {
-    if (this.roles[role.name] == null) {
-      throw new Error("Role not found");
+    if (this.roles[role.getName()] == null) {
+      throw new Error('Role not found');
     }
-    delete this.roles[role.name];
+    delete this.roles[role.getName()];
   }
 
   /**
@@ -34,6 +34,19 @@ export class Permissions {
    */
   public get(role: string): Role {
     return this.roles[role];
+  }
+
+  /**
+   * Gets a user role by the Id.
+   */
+  public getById(id: string): Role {
+    const keys = Object.keys(this.roles);
+    for (let i = 0, length = keys.length; i < length; i++) {
+      if (this.roles[keys[i]].getId() === id) {
+        return this.roles[keys[i]];
+      }
+    }
+    return null;
   }
 
   /**

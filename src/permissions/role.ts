@@ -1,28 +1,33 @@
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 export class Role {
   /**
+   * The Id of the role.
+   */
+  private id: string;
+  /**
    * The name of the role.
    */
-  public name: string;
+  private name: string;
   /**
    * The slug name of the role.
    */
-  public slug: string;
+  private slug: string;
   /**
    * The type of the role.
    */
-  public type: RoleType;
+  private type: RoleType;
   /**
    * The permissions which the role has access too.
    */
-  public permissions: string[];
+  private permissions: string[];
   /**
    * The XP boost which the role gives to users.
    */
   private _pointBoost: number;
 
-  constructor({ name, type, permissions, inherits = [], boost = 0 }: UserRole) {
+  constructor({ id, name, type, permissions, inherits = [], boost = 0 }: UserRole) {
+    this.id = id;
     this.name = name;
     this.slug = _.kebabCase(name);
     this.type = type;
@@ -41,12 +46,33 @@ export class Role {
       return true;
     }
     for (let i = 0, length = permissions.length; i < length; i++) {
-      const perm = permissions[i].split(":");
-      if (perm.indexOf("*") > -1) {
-        return new RegExp(`(${_.dropRight(perm, 1).join(":")}.*)`, "i").test(permission);
+      const perm = permissions[i].split(':');
+      if (perm.indexOf('*') > -1) {
+        return new RegExp(`(${_.dropRight(perm, 1).join(':')}.*)`, 'i').test(permission);
       }
     }
     return false;
+  }
+
+  /**
+   * Get the Id of the role.
+   */
+  getId(): string {
+    return this.id;
+  }
+
+  /**
+   * Get the name of the role.
+   */
+  getName(): string {
+    return this.name;
+  }
+
+  /**
+   * Get the slug name for the role.
+   */
+  getSlug(): string {
+    return this.slug;
   }
 
   /**
@@ -54,6 +80,13 @@ export class Role {
    */
   getBoost(): number {
     return this._pointBoost;
+  }
+
+  /**
+   * Get the permission for the role.
+   */
+  getPerms(): string[] {
+    return this.permissions;
   }
 
   /**
@@ -97,9 +130,10 @@ export class Role {
   }
 }
 
-export type RoleType = "internal" | "custom";
+export type RoleType = 'internal' | 'custom';
 
 export interface UserRole {
+  id: string;
   name: string;
   type: RoleType;
   permissions: string[];
