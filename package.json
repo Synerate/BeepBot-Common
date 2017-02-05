@@ -12,9 +12,9 @@
   },
   "devDependencies": {
     "@types/chai": "^3.4.32",
-    "@types/lodash": "^4.14.34",
+    "@types/lodash": "^4.14.52",
     "@types/mocha": "^2.2.31",
-    "@types/node": "^6.0.38",
+    "@types/node": "^7.0.5",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
     "istanbul": "^0.4.3",
