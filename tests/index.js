@@ -46,7 +46,7 @@ describe("Permissions", function() {
     const Raider = permissions.get("Love Raider");
     Raider.has("command:run:love_raider").should.be.true;
     Raider.type.should.eq("custom");
-    Raider.has("user:voice").should.be.true;
+    Raider.has("channel:game:join").should.be.true;
     Raider.has("channel:quote:delete").should.be.false;
     Raider.getId().should.be.eq(LoveRaiderId);
   });
@@ -81,8 +81,8 @@ describe("Permissions", function() {
 
   it("checks role has permission", function() {
     const Moderator = permissions.get("Moderator");
-    Moderator.has("channel:custom:edit").should.be.true;
-    Moderator.has("channel:custom:forcedelete").should.be.false;
+    Moderator.has("channel:command:update").should.be.true;
+    Moderator.has("channel:command:forceDelete").should.be.false;
   });
 
   it("adds a new permission", function () {
@@ -94,23 +94,23 @@ describe("Permissions", function() {
 
   it("removes a permission", function () {
     const Moderator = permissions.get("Moderator");
-    Moderator.remove("channel:custom:edit").should.be.true;
-    Moderator.remove("channel:custom:edit").should.be.false;
-    Moderator.has("channel:custom:edit").should.be.false;
+    Moderator.remove("channel:command:update").should.be.true;
+    Moderator.remove("channel:command:update").should.be.false;
+    Moderator.has("channel:command:update").should.be.false;
   });
 
   it("overrides the current permissions", function () {
     const Moderator = permissions.get("Moderator");
     Moderator.set([ "channel:new:create", "channel:new:edit" ]);
-    Moderator.remove("channel:custom:edit").should.be.false;
+    Moderator.remove("channel:command:update").should.be.false;
     Moderator.remove("channel:new:create").should.be.true;
   });
 
   it("checks if permissions are being inherited", function() {
     const Owner = permissions.get("Owner");
-    Owner.has("channel:command:forcedelete").should.be.true;
-    Owner.has("channel:custom:create").should.be.true;
-    Owner.has("user:voice").should.be.true;
+    Owner.has("channel:command:forceDelete").should.be.true;
+    Owner.has("channel:command:create").should.be.true;
+    Owner.has("channel:game:join").should.be.true;
     Owner.has("bot:developer:commands").should.be.false;
   });
 
