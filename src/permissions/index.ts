@@ -22,7 +22,7 @@ export class Permissions {
   /**
    * Unregisters a user role.
    */
-  public unRegisterRole(role: Role): void {
+  public unregisterRole(role: Role): void {
     if (this.roles[role.getName()] == null) {
       throw new Error('Role not found');
     }

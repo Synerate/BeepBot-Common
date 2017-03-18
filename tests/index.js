@@ -87,23 +87,23 @@ describe("Permissions", function() {
 
   it("adds a new permission", function () {
     const Moderator = permissions.get("Moderator");
-    Moderator.add("testing:cheese").should.be.true;
-    Moderator.add("testing:cheese").should.be.false;
-    Moderator.has("testing:cheese").should.be.true;
+    Moderator.add("testing:cheese");
+    Moderator.permissions.includes("testing:cheese").should.be.true;
+    Moderator.add("testing:cheese");
+    Moderator.permissions.filter(perm => perm === "testing:cheese").should.have.length.of(1);
   });
 
   it("removes a permission", function () {
     const Moderator = permissions.get("Moderator");
-    Moderator.remove("channel:command:update").should.be.true;
-    Moderator.remove("channel:command:update").should.be.false;
-    Moderator.has("channel:command:update").should.be.false;
+    Moderator.remove("testing:cheese");
+    Moderator.permissions.includes("testing:cheese").should.be.false;
   });
 
   it("overrides the current permissions", function () {
     const Moderator = permissions.get("Moderator");
     Moderator.set([ "channel:new:create", "channel:new:edit" ]);
-    Moderator.remove("channel:command:update").should.be.false;
-    Moderator.remove("channel:new:create").should.be.true;
+    Moderator.permissions.includes("channel:command:update").should.be.false;
+    Moderator.permissions.includes("channel:new:create").should.be.true;
   });
 
   it("checks if permissions are being inherited", function() {
@@ -119,12 +119,20 @@ describe("Permissions", function() {
     Developer.has("*").should.be.true;
   });
 
+  /**
+   * This does not actually do what you would expect.
+   * 
+   * I.E. channel:*:update would return false as the code is looking for the * on the end of the scope.
+   * 
+   * TODO: Needs changing to allow sub "grouping" of the wildcard.
+   */
   it("checks if role has sub wildcard permission", function () {
     const Moderator = permissions.get("Moderator");
     Moderator.add("channel:settings:*");
     Moderator.has("channel:settings:edit").should.be.true;
     Moderator.remove("channel:settings:*");
     Moderator.has("channel:settings:edit").should.be.false;
+    // Moderator.has("channel:*:edit").should.be.true;
   });
 
   it("gets the registered user roles", function () {
@@ -155,12 +163,12 @@ describe("Permissions", function() {
   });
 
   it("does allow to unregister a role", function () {
-    permissions.unRegisterRole(LoveRaider);
+    permissions.unregisterRole(LoveRaider);
     should.not.exist(permissions.get("Love Raider"));
   });
 
   it("does not allow to unregister a role which is not found.", function () {
-    should.Throw(() => permissions.unRegisterRole(LoveRaider), "Role not found");
+    should.Throw(() => permissions.unregisterRole(LoveRaider), "Role not found");
   });
 });
 

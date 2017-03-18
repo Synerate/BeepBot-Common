@@ -9,6 +9,5 @@ export const Regular = new Role({
   permissions: [
     'channel:protection:bypass',
     'channel:commands:run',
-    'command:d20:run',
   ]
 });

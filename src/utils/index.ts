@@ -50,8 +50,8 @@ function bytesToSize(bytes: number): string {
  * Convert bytes to a human readable format.
  */
 export const Utils = {
-  collectParts: collectParts,
-  stripUserTag: stripUserTag,
-  stripCommand: stripCommand,
-  bytesToSize: bytesToSize
+  collectParts,
+  stripUserTag,
+  stripCommand,
+  bytesToSize
 };
