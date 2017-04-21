@@ -208,17 +208,13 @@ describe("Utils", function () {
 
 describe("Locale", function () {
   it("gets the translation", function () {
-    Locale.get("en_US", "command.generic.reply.user").should.eq("@%s, %s");
-    Locale.get("cheese", "command.generic.reply.user").should.eq("@%s, %s");
+    Locale.get("en_US", "word.quote").should.eq("quote");
+    Locale.get("cheese", "generic.edited").should.eq("@%s the %s %s has been edited.");
   });
 
   it("translates the string", function () {
-    Locale.translate("en_US", "command.generic.reply.user", "artdude543", "Hey there!").should.eq("@artdude543, Hey there!");
-    Locale.translate("en_US", "command.generic.reply.user", "artdude543").should.eq("@artdude543, %s");
-    Locale.translate("da_DK", "protection.purge.capsoveruse", "artdude543").should.eq("@artdude543 du blev lige pwnt for at bruge for mange caps!");
-
-    Locale.translate("en_US", "command.generic.execution.string.short", "artdude543", "user name", 10).should.eq("@artdude543 Oops the argument for the user name is too short needs to be at least 10.");
-    Locale.translate("en_US", "command.random.tableflip").should.eq("(╯°□°）╯︵ ┻━┻");
+    Locale.translate("en_US", "word.quote").should.eq("quote");
+    Locale.translate("en_US", "generic.added", "artdude543", "quote").should.eq("@artdude543 the quote has been added successfully.");
   });
 
   it("formats the string", function () {

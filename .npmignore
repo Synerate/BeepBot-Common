@@ -1,5 +1,5 @@
 coverage
 node_modules
-.idea
+.vscode
 .travis.yml
 src/typings

@@ -1,11 +1,11 @@
 import { Role } from '../role';
-import { Moderator } from './moderator';
+import { Editor } from './editor';
 
 export const Owner = new Role({
   id: '1',
   name: 'Owner',
   type: 'internal',
-  inherits: [ Moderator ],
+  inherits: [ Editor ],
   permissions: [
     'channel:bot:update',
     'channel:command:forceDelete',

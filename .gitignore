@@ -6,7 +6,3 @@ node_modules/
 
 # Built Code
 js/
-
-# Editor
-.idea
-.vscode
