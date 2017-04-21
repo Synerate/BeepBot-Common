@@ -138,7 +138,7 @@ describe("Permissions", function() {
   it("gets the registered user roles", function () {
     const roles = permissions.getRoles();
     should.exist(roles);
-    Object.keys(roles).length.should.eq(7);
+    Object.keys(roles).length.should.eq(8);
     should.exist(roles["Moderator"]);
   });
 

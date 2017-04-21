@@ -2,6 +2,10 @@ import { Role } from './role';
 import { Roles } from './roles';
 import { Descriptions } from './descriptions';
 
+export interface UserRoles {
+  [role: string]: Role;
+}
+
 export class Permissions {
   private roles: UserRoles = {};
 
@@ -20,7 +24,7 @@ export class Permissions {
   }
 
   /**
-   * Unregisters a user role.
+   * Unregister a user role.
    */
   public unregisterRole(role: Role): void {
     if (this.roles[role.getName()] == null) {
@@ -62,8 +66,4 @@ export class Permissions {
   public static describe(permission: string): string {
     return Descriptions[permission] ? Descriptions[permission].text : null;
   }
-}
-
-export interface UserRoles {
-  [role: string]: Role;
 }
