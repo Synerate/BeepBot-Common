@@ -1,5 +1,7 @@
+.gitignore
+.npmignore
+.travis.yml
+tsconfig.json
+.vscode
 coverage
 node_modules
-.vscode
-.travis.yml
-src/typings

@@ -10,6 +10,7 @@ export const Editor = new Role({
     'channel:channel:update',
     'channel:command:forceDelete',
     'channel:gif:forceDelete',
+    'channel:restore:update',
     'channel:quote:forceDelete'
   ]
 });
