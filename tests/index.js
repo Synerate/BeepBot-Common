@@ -209,7 +209,7 @@ describe("Utils", function () {
 describe("Locale", function () {
   it("gets the translation", function () {
     Locale.get("en_US", "word.quote").should.eq("quote");
-    Locale.get("cheese", "generic.edited").should.eq("@%s the %s %s has been edited.");
+    Locale.get("cheese", "generic.edited").should.eq("@%s the %s `%s` has been edited.");
   });
 
   it("translates the string", function () {
