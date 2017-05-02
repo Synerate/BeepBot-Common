@@ -1,29 +1,31 @@
 {
   "name": "beepbot-common",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Common libs for the BeepBot project.",
   "main": "js/index.js",
-  "typings": "js/index",
+  "typings": "js/index.d.ts",
   "author": "ExoZone Development",
   "license": "MIT",
   "dependencies": {
-    "beepbot-lang": "^2.0.0-alpha.1",
+    "beepbot-lang": "^2.0.0-alpha.2",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@types/chai": "^3.5.1",
-    "@types/lodash": "^4.14.55",
+    "@types/chai": "^3.5.2",
+    "@types/lodash": "^4.14.63",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^7.0.8",
+    "@types/node": "^7.0.15",
+    "ava": "^0.19.1",
     "chai": "^3.5.0",
-    "coveralls": "^2.11.9",
-    "istanbul": "^0.4.3",
-    "mocha": "^3.0.2",
-    "typescript": "^2.2.2"
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.0",
+    "typescript": "^2.3.2"
   },
   "scripts": {
-    "test": "mocha tests/index.js",
-    "travis": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests/*"
+    "test": "tsc && nyc ava",
+    "report": "nyc report --reporter=html"
   },
   "repository": {
     "type": "git",
@@ -37,5 +39,10 @@
   "bugs": {
     "url": "https://github.com/ExoZoneDev/beepbot-common/issues"
   },
-  "homepage": "https://github.com/ExoZoneDev/beepbot-common#readme"
+  "homepage": "https://github.com/ExoZoneDev/beepbot-common#readme",
+  "ava": {
+    "files": [
+      "./js/tests/*.js"
+    ]
+  }
 }

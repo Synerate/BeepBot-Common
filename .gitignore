@@ -1,4 +1,5 @@
 # Coverage
+.nyc_output
 coverage/
 
 # NodeJS
