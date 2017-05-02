@@ -1,7 +1,8 @@
+.vscode
+.nyc_output
+coverage
+node_modules
 .gitignore
 .npmignore
 .travis.yml
 tsconfig.json
-.vscode
-coverage
-node_modules
