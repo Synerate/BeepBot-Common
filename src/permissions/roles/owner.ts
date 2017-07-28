@@ -8,9 +8,6 @@ export const Owner = new Role({
   inherits: [ Editor ],
   permissions: [
     'channel:bot:update',
-    'channel:command:forceDelete',
-    'channel:gif:forceDelete',
-    'channel:quote:forceDelete',
     'channel:bot:create',
   ]
 });

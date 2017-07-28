@@ -14,6 +14,8 @@ export const Moderator = new Role({
     'channel:command:delete',
     'channel:command:override',
     'channel:command:update',
+    'channel:game:start',
+    'channel:game:stop',
     'channel:gif:create',
     'channel:gif:delete',
     'channel:gif:update',

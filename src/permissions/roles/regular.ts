@@ -8,6 +8,6 @@ export const Regular = new Role({
   inherits: [ User ],
   permissions: [
     'channel:protection:bypass',
-    'channel:commands:run',
+    'channel:commands:view',
   ]
 });

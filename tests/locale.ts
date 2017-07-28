@@ -4,12 +4,12 @@ import { Locale } from '../src/';
 
 test('gets the translation', t => {
   t.is(Locale.get('en_US', 'word.quote'), 'quote');
-  t.is(Locale.get('cheese', 'generic.edited'), '@%s the %s `%s` has been edited.');
+  t.is(Locale.get('cheese', 'generic.edited'), '%s the %s `%s` has been edited.');
 });
 
 test('translates the string', t => {
   t.is(Locale.translate('en_US', 'word.quote'), 'quote');
-  t.is(Locale.translate('en_US', 'generic.added', 'artdude543', 'quote'), '@artdude543 the quote has been added successfully.');
+  t.is(Locale.translate('en_US', 'generic.added', 'artdude543', 'quote'), 'artdude543 the quote has been added successfully.');
 });
 
 test('formats the string', t => {

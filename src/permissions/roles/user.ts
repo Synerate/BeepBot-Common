@@ -5,6 +5,7 @@ export const User = new Role({
   name: 'User',
   type: 'internal',
   permissions: [
-    'channel:game:join'
+    'channel:game:join',
+    'channel:game:claim'
   ]
 });

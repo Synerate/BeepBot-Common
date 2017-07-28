@@ -1,22 +1,22 @@
 {
   "name": "beepbot-common",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Common libs for the BeepBot project.",
   "main": "js/src/index.js",
   "typings": "js/src/index.d.ts",
   "author": "ExoZone Development",
   "license": "MIT",
   "dependencies": {
-    "beepbot-lang": "^2.0.0-alpha.2",
+    "beepbot-lang": "^2.0.0-alpha.3",
     "lodash": "^4.17.4"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.63",
-    "@types/node": "^7.0.15",
-    "ava": "^0.19.1",
+    "@types/lodash": "^4.14.71",
+    "@types/node": "^8.0.17",
+    "ava": "^0.21.0",
     "coveralls": "^2.13.1",
-    "nyc": "^10.3.0",
-    "typescript": "^2.3.2"
+    "nyc": "^11.0.3",
+    "typescript": "^2.4.2"
   },
   "scripts": {
     "test": "tsc && nyc ava",

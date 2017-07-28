@@ -8,9 +8,13 @@ export const Editor = new Role({
   inherits: [ Moderator ],
   permissions: [
     'channel:channel:update',
+    'channel:command:cooldown',
     'channel:command:forceDelete',
     'channel:gif:forceDelete',
     'channel:restore:update',
-    'channel:quote:forceDelete'
+    'channel:quote:forceDelete',
+    'channel:settings:create',
+    'channel:settings:update',
+    'channel:settings:view',
   ]
 });
