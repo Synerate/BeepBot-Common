@@ -1,5 +1,7 @@
 # Coverage
 .nyc_output
+.yarnrc
+.vscode
 coverage/
 
 # NodeJS

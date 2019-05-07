@@ -1,8 +1,7 @@
-import { test } from 'ava';
+import test from 'ava';
 
 import { Permissions, Role } from '../src/';
 import { User } from '../src/permissions/roles/user';
-import { Subscriber } from '../src/permissions/roles/subscriber';
 
 
 const permissions = new Permissions();
