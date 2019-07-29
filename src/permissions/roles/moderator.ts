@@ -7,6 +7,7 @@ export const Moderator = new Role({
   type: 'internal',
   inherits: [ Subscriber ],
   permissions: [
+    'bot:command:debug',
     'channel:alias:create',
     'channel:alias:delete',
     'channel:alias:update',

@@ -7,7 +7,11 @@ export const Regular = new Role({
   type: 'internal',
   inherits: [ User ],
   permissions: [
+    'bot:command:fun',
+    'channel:leaderboard:view',
     'channel:protection:bypass',
     'channel:commands:view',
+    'channel:points:view',
+    'channel:schedule:view'
   ]
 });

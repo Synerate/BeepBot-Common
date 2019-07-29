@@ -115,6 +115,15 @@ test('checks if role has sub wildcard permission', t => {
   t.false(Moderator.has('channel:settings:edit'));
 });
 
+test('finds the role which the permission belongs too', t => {
+  const Moderator = permissions.get('Moderator');
+  const Owner = permissions.get('Owner');
+  
+  t.is(permissions.getRoleByPerm('channel:clip:create'), Moderator);
+  t.is(permissions.getRoleByPerm('channel:bot:update'), Owner);
+  t.is(permissions.getRoleByPerm('not:a:real:perm'), null);
+});
+
 test('gets the registered user roles', t => {
   const roles = permissions.getRoles();
   t.not(roles, undefined);

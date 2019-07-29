@@ -1,4 +1,4 @@
-import { dropRight, kebabCase, union, } from 'lodash';
+import { dropRight, kebabCase, union } from 'lodash';
 
 export type RoleType = 'internal' | 'custom';
 
@@ -29,6 +29,10 @@ export class Role {
    */
   private type: RoleType;
   /**
+   * The raw permissions that the role has.
+   */
+  private rawPermissions: string[] = [];
+  /**
    * The permissions which the role has access too.
    */
   private permissions: string[];
@@ -47,6 +51,7 @@ export class Role {
     this.slug = kebabCase(name);
     this.type = type;
     this.permissions = permissions;
+    this.rawPermissions = permissions;
     this.inherits = inherits;
     this.pointBoost = boost;
     // Apply all the permissions from the sub roles to this role.
@@ -65,6 +70,19 @@ export class Role {
       const perm = permissions[i].split(':');
       if (perm.includes('*')) {
         return new RegExp(`(${dropRight(perm, 1).join(':')}.*)`, 'i').test(permission);
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Checks if the role has a permission in it's raw scopes.
+   */
+  hasInRaw(permission: string) {
+    const permissions = this.rawPermissions;
+    for (let i = 0, length = permissions.length; i < length; i++) {
+      if (permissions[i] === permission) {
+        return true;
       }
     }
     return false;

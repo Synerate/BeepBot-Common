@@ -1,6 +1,6 @@
+import { Descriptions } from './descriptions';
 import { Role } from './role';
 import { Roles } from './roles';
-import { Descriptions } from './descriptions';
 
 export interface UserRoles {
   [role: string]: Role;
@@ -58,6 +58,20 @@ export class Permissions {
    */
   public getRoles(): UserRoles {
     return this.roles;
+  }
+
+  /**
+   * Find the role in which the permission belongs too.
+   */
+  public getRoleByPerm(permission: string) {
+    const keys = Object.keys(this.roles);
+    for (let i = 0, length = keys.length; i < length; i++) {
+      const role = this.roles[keys[i]];
+      if (role.hasInRaw(permission)) {
+        return role;
+      }
+    }
+    return null;
   }
 
   /**
