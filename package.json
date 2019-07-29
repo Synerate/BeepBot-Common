@@ -1,6 +1,6 @@
 {
   "name": "beepbot-common",
-  "version": "2.1.11",
+  "version": "2.2.0",
   "description": "Common libs for the BeepBot project.",
   "main": "js/src/index.js",
   "typings": "js/src/index.d.ts",
