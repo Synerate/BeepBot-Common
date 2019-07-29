@@ -655,11 +655,6 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beepbot-lang@^2.x.x:
-  version "2.0.7"
-  resolved "https://npm.artdude.uk:443/beepbot-lang/-/beepbot-lang-2.0.7.tgz#39af6007b725b739ff6ae0d408b59d99bf18b338"
-  integrity sha512-RUNGWrdj5uFOBf7Ts8XYs7844UnOrz+mraiN7G09sFs47nTBFRFrA9Y7/ebI4Kb9rG0K9rn6j5sJfCBxGl+ouw==
-
 binary-extensions@^2.0.0:
   version "2.0.0"
   resolved "https://npm.artdude.uk/binary-extensions/-/binary-extensions-2.0.0.tgz#23c0df14f6a88077f5f986c0d167ec03c3d5537c"
