@@ -46,7 +46,7 @@ test('get a role from an Id', t => {
 });
 
 test('does not allow a role to be registered again', t => {
-  t.throws(() => permissions.registerRole(LoveRaider), 'Role already registered');
+  t.throws(() => permissions.registerRole(LoveRaider), { message: 'Role already registered' });
 })
 
 test('has a slug name', t => {
@@ -157,5 +157,5 @@ test('does allow to unregister a role', t => {
 });
 
 test('does not allow to unregister a role which is not found', t => {
-  t.throws(() => permissions.unregisterRole(LoveRaider), 'Role not found');
+  t.throws(() => permissions.unregisterRole(LoveRaider), { message: 'Role not found' });
 });

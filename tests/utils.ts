@@ -5,7 +5,7 @@ import { Utils } from '../src/';
 test('collects string parts', t => {
   const parts = 'I am testing the collecting of parts'.split(' ');
 
-  t.throws(() => Utils.collectParts(parts, '......'), 'Invalid task format');
+  t.throws(() => Utils.collectParts(parts, '......'), { message: 'Invalid task format' });
 
   t.deepEqual(Utils.collectParts(parts, '0..'), parts);
   t.deepEqual(Utils.collectParts(parts, '1'), [parts[1]]);
