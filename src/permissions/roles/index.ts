@@ -1,19 +1,20 @@
 import { Role } from '../role';
-
-import { User } from './user';
-import { Subscriber } from './subscriber';
-import { Regular } from './regular';
-import { Moderator } from './moderator';
-import { Editor } from './editor';
-import { Owner } from './owner';
 import { Developer } from './developer';
+import { Editor } from './editor';
+import { Moderator } from './moderator';
+import { Owner } from './owner';
+import { Regular } from './regular';
+import { Subscriber } from './subscriber';
+import { User } from './user';
+import { VIP } from './vip';
 
 export const Roles: Role[] = [
   User,
-  Subscriber,
   Regular,
+  Subscriber,
+  VIP,
   Moderator,
   Editor,
   Owner,
-  Developer
+  Developer,
 ];

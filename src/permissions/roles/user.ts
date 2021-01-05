@@ -1,7 +1,7 @@
 import { Role } from '../role';
 
 export const User = new Role({
-  id: '6',
+  id: '7',
   name: 'User',
   type: 'internal',
   permissions: [

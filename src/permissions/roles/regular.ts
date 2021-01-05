@@ -2,7 +2,7 @@ import { Role } from '../role';
 import { User } from './user';
 
 export const Regular = new Role({
-  id: '5',
+  id: '6',
   name: 'Regular',
   type: 'internal',
   inherits: [ User ],
