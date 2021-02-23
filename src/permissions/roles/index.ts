@@ -9,12 +9,12 @@ import { User } from './user';
 import { VIP } from './vip';
 
 export const Roles: Role[] = [
-  User,
-  Regular,
-  Subscriber,
-  VIP,
-  Moderator,
-  Editor,
-  Owner,
-  Developer,
+    User,
+    Regular,
+    Subscriber,
+    VIP,
+    Moderator,
+    Editor,
+    Owner,
+    Developer,
 ];
