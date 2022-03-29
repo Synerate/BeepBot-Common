@@ -1,14 +1,14 @@
 {
   "name": "beepbot-common",
-  "version": "2.2.3",
+  "version": "2.2.4",
   "description": "Common libs for the BeepBot project.",
   "main": "js/src/index.js",
   "typings": "js/src/index.d.ts",
   "author": "Kieron Richardson <artdude543@hotmail.co.uk>",
   "contributors": [
     {
-      "name": "Nydardoric",
-      "url": "https://nydardoric.com/"
+      "name": "Synerate",
+      "url": "https://synerate.com/"
     }
   ],
   "license": "MIT",
@@ -30,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nydardoric/Beepbot-Common.git"
+    "url": "git+https://github.com/Synerate/Beepbot-Common.git"
   },
   "keywords": [
     "beepbot",
@@ -38,9 +38,9 @@
     "utils"
   ],
   "bugs": {
-    "url": "https://github.com/Nydardoric/Beepbot-Common/issues"
+    "url": "https://github.com/Synerate/Beepbot-Common/issues"
   },
-  "homepage": "https://github.com/Nydardoric/Beepbot-Common#readme",
+  "homepage": "https://github.com/Synerate/Beepbot-Common#readme",
   "ava": {
     "files": [
       "./js/tests/*.js"
