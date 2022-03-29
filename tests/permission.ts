@@ -3,7 +3,6 @@ import test from 'ava';
 import { Permissions, Role } from '../src/';
 import { User } from '../src/permissions/roles/user';
 
-
 const permissions = new Permissions();
 const LoveRaider = new Role({
     id: "9d77f237-b412-478b-b5ed-d46611a5e074",
@@ -17,11 +16,11 @@ const LoveRaider = new Role({
 });
 const OtherRole = new Role({
     id: "9d77f237-b412-478b-b5ed-d46611a5e075",
-    name: "Love Raider",
+    name: "Other Raider",
     type: "custom",
     inherits: [ User ],
     permissions: [
-        "command:run:love_raider"
+        "command:run:other_raider"
     ],
     boost: 0.50,
 });
@@ -137,7 +136,7 @@ test('finds the role which the permission belongs too', t => {
 test('gets the registered user roles', t => {
     const roles = permissions.getRoles();
     t.not(roles, undefined);
-    t.is(9, Object.keys(roles).length);
+    t.is(10, Object.keys(roles).length);
     t.not(roles['Moderator'], undefined);
 });
 
