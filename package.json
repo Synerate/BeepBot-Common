@@ -48,5 +48,6 @@
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
-  }
+  },
+  "packageManager": "yarn@3.2.0"
 }
